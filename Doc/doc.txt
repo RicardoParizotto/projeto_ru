@@ -10,8 +10,13 @@ Integrantes:
 
 Resumo do sistema
 
-O sistema web permite que qualquer usuário avalie o serviço do restaurante.
-É possível visualizar estatísticas em  sobre as avaliações realizadas
+É um sistema web, onde o administrador do serviço pode inserir, excluir ou atualizar cardápios no sistema.
+
+Os cardápios serão visíveis para todos os usuários e permite que o mesmo avalie o serviço do restaurante.
+	- Comentar cardápios
+	- Nível de satisfatibilidade
+
+É possível visualizar estatísticas sobre as avaliações realizadas.
 
 
 
