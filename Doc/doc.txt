@@ -1,0 +1,17 @@
+UNIVERSIDADE FEDERAL DA FRONTEIRA SUL
+
+Integrantes: 
+	Duan Bressan
+	Edson Lemes
+	Eliton Traverssini
+	Leduan Rabaioli
+	Ricardo Parizotto
+
+
+Resumo do sistema
+
+O sistema web permite que qualquer usuário avalie o serviço do restaurante.
+É possível visualizar estatísticas em  sobre as avaliações realizadas
+
+
+
