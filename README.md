@@ -1,4 +1,4 @@
+UNVIERSIDADE FEDERAL DA FRONTEIRA SUL
 
-
-Descrição do projeto
+Sistema que permite avaliação do serviço do RU e exibe estatísticas sobre os dados coletados.
 
