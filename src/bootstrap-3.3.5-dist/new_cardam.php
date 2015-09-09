@@ -1,19 +1,43 @@
+<?php
+  $timezone = "America/Sao_Paulo";
+  date_default_timezone_set($timezone);
+  $today = date("d-m-Y");
+?>
+
+
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
+        <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+	<link rel="stylesheet" href="css/datepicker.css">
+
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Adicionar cardápio</title>
+ 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/fileinput.js" type="text/javascript"></script>
+    <script src="js/fileinput_locale_fr.js" type="text/javascript"></script>
+    <script src="js/fileinput_locale_es.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+    <title>Novo Cardápio</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+   <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
@@ -23,42 +47,121 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+   
+
   </head>
 
   <body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container" style="">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" style="">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#" class="" style="">Explore</a>
+                
+                </li>
+                <li><a href="#" class="">Estatísticas</a>
+
+                </li>
+                <li><a href="#myModal" data-toggle="modal" data-target="#myModal">Sign out</a>
+
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
     <div class="container">
 
-      <form class="form-signin" action="upload.php" method="POST">
-        <h2 class="form-signin-heading"></h2>
-        <label for="inputEmail" class="sr-only"></label>
-        <input type="text" id="inputCard" name="inputCard" class="form-control" placeholder="Caaaardápio" required autofocus>
-		    <label class="control-label">Select IMG</label>
-			<input id="input-20" type="file" class="file-loading">
-			    <label class="control-label">Select File</label>
-				<input id="input-21" type="file" accept="image/*" class="file-loading">
-				<script>
-					$(document).on('ready', function() {
-						$("#input-21").fileinput({
-							allowedFileExtensions: ["jpg", "gif", "png", "txt"]
-							previewFileType: "image",
-							browseClass: "btn btn-success",
-							browseLabel: "Pick Image",
-							browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-							removeClass: "btn btn-danger",
-							removeLabel: "Delete",
-							removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-							uploadClass: "btn btn-info",
-							uploadLabel: "Upload",
-							uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+	
+
+
+	<section>				
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+
+      				<form action="upload.php" autocomplete="on" method="POST">
+		
+        			 <header><h1 id="cc"><span>Cadastrar Cardápio</span></h1></header>
+
+				 <p> 
+                                    <label for="inputCard" class="uname" data-icon="" >Nome</label>
+                                    <input id="inputCard" name="inputCard" placeholder=""/>
+                                </p>
+				<p> 
+                                    <label for="inputDescr" class="uname" data-icon="">Descrição</label>
+                                    <input type="text" maxlength=100 id="inputDescr"name="inputDescr" placeholder="" /> 
+                                </p>	
+				<p>
+				<label class="control-label"> Data</label>
+				<input  type="text" value="<?php echo $today; ?>" id="inputData" readonly='true'>
+				 <script type="text/javascript">
+            				// When the document is ready
+					
+            				$(document).ready(function () {
+                
+                				$('#inputData').datepicker({
+                    					format: "dd/mm/yyyy"
+                				}).on('changeDate', function(e){
+    							$(this).datepicker('hide');
 						});
-					});
-				</script>
+            
+            				});
+					
+        			</script>
+				
+			    	</p>
+				
+    				<input id="input-23" type="file" multiple=true class="file-loading" required type="file">
+    				<script>
+    					$(document).on('ready', function() {
+        					$("#input-23").fileinput({
+            						showUpload: false,
+	     						allowedFileExtensions: ["jpg", "gif", "png", "jpeg"],
+                       					browseClass: "btn btn-info",
+        						browseLabel: "Pick Image",
+        						browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            						layoutTemplates: {
+                						main1: "{preview}\n" +
+               								 "<div class=\'input-group {class}\'>\n" +
+               								 "   <div class=\'input-group-btn\'>\n" +
+                						"       {browse}\n" +
+                       
+                
+                						"   </div>\n" +
+                						"   {caption}\n" +
+               							 "</div>"
+            						}
+       						 });
+    						});
+    				</script>
         
+      				<p class="login button"> 
+                                    <input type="submit" value="Adicionar" name="fsub" id="fsub" /> 
+								</p>
+			</form>
+
+	         </div>
+		</div>
+        	</div>
+        </section>
       
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Adicionar</button>
-      </form>
 
     </div> <!-- /container -->
+	
+
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
