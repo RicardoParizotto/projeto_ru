@@ -1,6 +1,5 @@
 <?php
 	require 'function.php';
-	$rs = cardapio();
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +7,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
         <meta charset="utf-8">
-        <title>AV RU</title>
+        <title>RU</title>
         <meta name="generator" content="Bootply" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="Example of using CSS only for masonry / isotope style layout with Bootstrap panels." />
@@ -21,28 +20,38 @@
         <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
 
-	<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet">
-
-        <!-- CSS code from Bootply.com editor -->
-        <!-- Custom styles for this template -->
+		<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet">
         <link href="css/index.css" rel="stylesheet">   
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+  
+		<link href="css/signin.css" rel="stylesheet">
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js" ></script>    
 
-    	<!-- Bootstrap core CSS -->
-   	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-  	<!-- Custom styles for this template -->
- 	<link href="css/signin.css" rel="stylesheet">
-    
-
-	<script>
-		function votar(t, id, qtd){		
-			alert("<?php vote(t, id, qtd); echo 'cu';?>");
-		}
-	</script>	
 
     </head>
         
     <body>
+
+		<script>
+				function like(){
+					var xmlhttp = new XMLHttpRequest();
+
+					xmlhttp.open("GET","vote.php?id=2&order=like",true);	
+
+					xmlhttp.onreadstatechange = function() {
+   				       		if (xmlhttp.readyState < 4)                         // while waiting response from server
+        						document.getElementById('ok').innerHTML = "Loading...";
+    						else if (xmlhttp.readyState === 4) {                // 4 = Response from server has been completely loaded.
+       						        if (xmlhttp.status == 200 && xmlhttp.status < 300)  // http status between 200 to 299 are all successful
+            							document.getElementById('ok').innerHTML = xhr.responseText;
+    							}
+						}
+ 
+					xmlhttp.send();
+				}
+		</script>
+
         
         <!--template-->
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -80,7 +89,15 @@
                 <div class="product col-sm-6">
 
 			<?php
+					if(isset($_GET['id']))
+						$qrySQL = 'SELECT * FROM Cardapio WHERE _id='.$_GET['id'];	
+					else
+						$qrySQL = 'SELECT * FROM Cardapio WHERE Data = (SELECT max(Data) FROM Cardapio)';
+						
+					$rs = mysql_query($qrySQL);
+			
 		    		if($row = mysql_fetch_array($rs)){
+		
 	        			echo '<img class="img-responsive" src='.$row['img_url'].'><hr>
 						<h2>'.$row['Nome'].'</h2>
 						<p>'.$row['Descricao'].'';  		
@@ -89,12 +106,10 @@
 		  	?>
 		  
                     <hr>
-		    <?php
+			<button type="button" onclick="like()" class="btn btn-primary btn-lg">Gostei</button>	<span id="ok"></span>
 
-			/*como faz?*/
-                    	echo '<button onclick= "votar(1,'.$rs['_id'].','.$rs['nota_p'].')" class="btn btn-primary btn-lg " >Gostei</button>';
-                   	echo '<button onclick= "votar(0,'.$rs['_id'].','.$rs['nota_n'].')"class="btn btn-primary btn-lg ">Não gostei</button>';
-                    ?>
+                   	<button class="btn btn-primary btn-lg " id=dislike value="dislike">Não gostei</button>
+		          
 	            <hr>
                    
                     <!-- aqui é onde vai os comentários -->
@@ -109,6 +124,7 @@
                 <div class="col-sm-6">
                     <div class="productsrow">
 			<?php
+				$rs = cardapio();
 				while($row = mysql_fetch_array($rs)){
 					$data = split('-', $row['Data']);
 					echo '<div class="product menu-category">
@@ -116,7 +132,7 @@
                             		      <div class="product-image">
                                            	<img class="product-image menu-item list-group-item" src='.$row['img_url'].'>
                             		      </div>
-					      <a href="#" class="menu-item list-group-item">'.date("l", mktime(0, 0, 0, $data[1], $data[2], $data[0])).'<span class="badge">'.$row['Data'].'</span></a>
+					      <a href="index.php?id='.$row['_id'].'" class="menu-item list-group-item">'.date("l", mktime(0, 0, 0, $data[1], $data[2], $data[0])).'<span class="badge">'.$row['Data'].'</span></a>
  			                      </div>';
 				}
 			?>
@@ -142,19 +158,16 @@
         <div class="modal-body">
           <div class="form-group">
 
- 	  <form class="form-signin" action="authentication.php" method="POST">
-       		 <h2 class="form-signin-heading">Login</h2>
-       		 <label for="inputEmail" class="sr-only">Email</label>
+			<form class="form-signin" action="authentication.php" method="POST">
+				<h2 class="form-signin-heading">Login</h2>
+				<label for="inputEmail" class="sr-only">Email</label>
         		<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="e-mail" required autofocus>
         		<label for="inputPassword" class="sr-only">Senha</label>
         		<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Senha" required>
-    	  </form>
-          <p class="text-right"><a href="#">Forgot password?</a></p>
-        </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Close</a>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-	</form>
+		   </div>
+			<div class="modal-footer">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+			</form>
         </div>
       </div>
     </div>
@@ -168,12 +181,6 @@
 
 
         <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-
-
-
-
-
         
         <!-- JavaScript jQuery code from Bootply.com editor  -->
         
