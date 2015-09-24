@@ -92,7 +92,7 @@
                     <div id="wrapper">
                         <div id="login" class="animate form">
 
-      				<form action="upload.php" autocomplete="on" method="POST">
+      				<form action="upload.php" method="post" enctype="multipart/form-data">
 		
         			 <header><h1 id="cc"><span>Cadastrar Cardápio</span></h1></header>
 
@@ -101,12 +101,13 @@
                                     <input id="inputCard" name="inputCard" placeholder=""/>
                                 </p>
 				<p> 
-                                    <label for="inputDescr" class="uname" data-icon="">Descrição</label>
-                                    <input type="text" maxlength=100 id="inputDescr"name="inputDescr" placeholder="" /> 
+						<label for="inputDescr" class="uname" data-icon="" > Descrição</label>
+						<textarea cols=50 id="inputDescr" rows="5" name="inputDescr" maxlength="100" wrap="hard" placeholder=""></textarea>
+                                   
                                 </p>	
 				<p>
 				<label class="control-label"> Data</label>
-				<input  type="text" value="<?php echo $today; ?>" id="inputData" readonly='true'>
+				<input  type="text" value="<?php echo $today; ?>" id="inputData" name="inputData" readonly='true'>
 				 <script type="text/javascript">
             				// When the document is ready
 					
@@ -124,14 +125,14 @@
 				
 			    	</p>
 				
-    				<input id="input-23" type="file" multiple=true class="file-loading" required type="file">
+    				<input id="input-23" name="input-23" type="file" multiple=true class="file-loading" >
     				<script>
     					$(document).on('ready', function() {
         					$("#input-23").fileinput({
             						showUpload: false,
 	     						allowedFileExtensions: ["jpg", "gif", "png", "jpeg"],
                        					browseClass: "btn btn-info",
-        						browseLabel: "Pick Image",
+        						browseLabel: "Inserir imagem",
         						browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
             						layoutTemplates: {
                 						main1: "{preview}\n" +
@@ -147,7 +148,7 @@
        						 });
     						});
     				</script>
-        
+					<br>
       				<p class="login button"> 
                                     <input type="submit" value="Adicionar" name="fsub" id="fsub" /> 
 								</p>
