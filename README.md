@@ -1,4 +1,4 @@
-﻿UNVIERSIDADE FEDERAL DA FRONTEIRA SUL
+﻿UNIVERSIDADE FEDERAL DA FRONTEIRA SUL
 
 Sistema que permite avaliação do serviço do RU e exibe estatísticas sobre os dados coletados pelo usuário.
 
@@ -12,6 +12,8 @@ Implementação no projeto:
 	*Diagrama de comunicação;
 	*Diagrama de máquinas de estados;
 	*Diagrama de atividades;
+	*Diagrama de pacotes;
+	*Diagrama de tempo;
 
 	*Modelagem do banco de dados;
 	*Criação do banco de dados;
