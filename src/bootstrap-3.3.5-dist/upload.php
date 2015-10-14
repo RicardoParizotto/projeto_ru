@@ -10,7 +10,7 @@
 	require ('connect.php');
 	if(isset($_POST['fsub'])){
 		// Pasta onde o arquivo vai ser salvo
-		$_UP['pasta'] = 'uploads/';
+		$_UP['pasta'] = '../../imgs/uploads/';
  	//echo "arq" .$_FILES['input-23']['name'] . "<br>";
  	//echo "arq" .$_POST['inputDescr'] . "<br>";
  	//echo "arq" .$_POST['inputData'] . "<br>";
