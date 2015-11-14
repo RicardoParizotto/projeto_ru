@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `Cardapio` (
   `Descricao` text NOT NULL,
   `Data` date NOT NULL,
   `Nome` varchar(40) NOT NULL,
-  `img_url` varchar(60),
+  `img_url` text,
   `nota_p` int(11) NOT NULL DEFAULT '0',
   `nota_n` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;

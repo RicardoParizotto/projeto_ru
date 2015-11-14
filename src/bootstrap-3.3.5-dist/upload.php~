@@ -80,10 +80,6 @@
 			
 					$destino = $_UP['pasta'] . $novoNome;
 
-				if(move_uploaded_file( $arquivo_tmp, $destino)){
-
-				
-
 				if(isset($_POST['inputData'])){
 
 					if( $_POST['inputData'] != $_SESSION['datat']){
@@ -101,9 +97,9 @@
 				//$data = date('Y/m/d', strtotime($data));
 
 			//echo $destino;
-					
+					if(move_uploaded_file( $arquivo_tmp, $destino)){
 				
-					$query = "update Cardapio set Descricao='".$desc."',Nome='".$card."', img_url='".$destino."' where _id = '".$_SESSION['idnum']."'";}
+					$query = "update Cardapio set Descricao='".$desc."',Nome='".$card."', img_url='".$destino."' where _id = '".$_SESSION['idnum']."'";}}
 				$result = mysql_query($query);
 				if(!$result){ //se tiver problemas, retorna falso
 					die ("Acesso à base de dados falhou: ".mysql_error());
@@ -112,7 +108,7 @@
 				echo "Arquivo atualizado com sucesso..";
 				//echo "<img src=\"" . $destino . "\" />"
 
-				}
+
 		}
 
 		else{

@@ -102,7 +102,7 @@
                                 </p>
 				<p> 
 						<label for="inputDescr" class="uname" data-icon="" > Descrição</label>
-						<textarea cols=50 id="inputDescr" rows="5" name="inputDescr" maxlength="100" wrap="hard" placeholder=""></textarea>
+						<input id="inputDescr" name="inputDescr" placeholder="">
                                    
                                 </p>	
 				<p>
@@ -125,12 +125,12 @@
 				
 			    	</p>
 				
-    				<input id="input-23" name="input-23" type="file" multiple="false" class="file-loading" required="true">
+    				<input id="input-23" name="input-23" type="file" multiple="false" class="file-loading" >
     				<script>
     					$(document).on('ready', function() {
         					$("#input-23").fileinput({
             						showUpload: false,
-									required: true,
+									minFileCount: 1,
 	     						allowedFileExtensions: ["jpg", "gif", "png", "jpeg"],
                        					browseClass: "btn btn-info",
         						browseLabel: "Inserir imagem",
