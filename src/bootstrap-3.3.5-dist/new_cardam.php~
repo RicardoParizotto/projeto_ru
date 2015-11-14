@@ -130,7 +130,7 @@
     					$(document).on('ready', function() {
         					$("#input-23").fileinput({
             						showUpload: false,
-									minFileCount: 1,
+									required: true,
 	     						allowedFileExtensions: ["jpg", "gif", "png", "jpeg"],
                        					browseClass: "btn btn-info",
         						browseLabel: "Inserir imagem",

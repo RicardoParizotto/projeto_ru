@@ -2373,7 +2373,7 @@
         uploadLabel: 'Upload',
         uploadTitle: 'Upload de arquivos',
         msgZoomTitle: 'Ver detalhes',
-        msgZoomModalHeading: 'Pré-visualização',
+        msgZoomModalHeading: 'Detailed Preview',
         msgSizeTooLarge: 'O arquivo "{name}" (<b>{size} KB</b>) excedeu o limite maximo: <b>{maxSize} KB</b>.',
         msgFilesTooLess: 'Você precisa selecionar ao menos  um <b>{n}</b> {files} para enviar.',
         msgFilesTooMany: 'O número de arquivos selecionados <b>({n})</b> excedeu o limite máximo <b>{m}</b>.',

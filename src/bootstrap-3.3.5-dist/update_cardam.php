@@ -1,10 +1,31 @@
 <?php
+
+  session_start();
+  include('connect.php');
+  //$iden = $_SESSION['id'];
+  $iden = 4;
   $timezone = "America/Sao_Paulo";
   date_default_timezone_set($timezone);
   $today = date("d-m-Y");
-?>
-
-
+  
+  //$query = "insert into Cardapio (_id,Descricao,Data,Nome,img_url) values  (NULL, '".$desc."', '".$data."', '".$card."', '".$destino."')";
+  $query = "select * from Cardapio where _id = '".$iden."'";
+  $result = mysql_query($query);
+   if(!$result){ //se tiver problemas, retorna falso
+		die ("Acesso à base de dados falhou: ".mysql_error());
+	}
+	
+	
+	while($row = mysql_fetch_array($result)){
+		$id = $row['_id'];
+		$descr = $row['Descricao'];
+		$data = $row['Data'];
+		$name = $row['Nome'];
+		$img = $row['img_url'];
+	
+	
+	}$data = date('d/m/Y', strtotime($data));$_SESSION['image'] = $img;$_SESSION['datat'] = $data; 
+	?>
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -34,7 +55,7 @@
     <script src="js/fileinput_locale_es.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
-    <title>Novo Cardápio</title>
+    <title>Atualização de cadastro</title>
 
     <!-- Bootstrap core CSS -->
    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
@@ -94,20 +115,20 @@
 
       				<form action="upload.php" method="post" enctype="multipart/form-data">
 		
-        			 <header><h1 id="cc"><span>Cadastrar Cardápio</span></h1></header>
+        			 <header><h1 id="cc"><span>Atualização</span></h1></header>
 
 				 <p> 
                                     <label for="inputCard" class="uname" data-icon="" >Nome</label>
-                                    <input id="inputCard" name="inputCard" placeholder="" required="true"/>
+                                    <input id="inputCard" name="inputCard" value="<?php echo $name;?>" required="true"/>
                                 </p>
 				<p> 
 						<label for="inputDescr" class="uname" data-icon="" > Descrição</label>
-						<input id="inputDescr" name="inputDescr" placeholder="">
+						<input id="inputDescr" rows="5" name="inputDescr" value="<?php echo $descr;?>" >
                                    
                                 </p>	
 				<p>
 				<label class="control-label"> Data</label>
-				<input  type="text" value="<?php echo $today; ?>" id="inputData" name="inputData" readonly='true'>
+				<input  type="text"value="<?php echo $data; ?>" id="inputData" name="inputData" readonly='true'>
 				 <script type="text/javascript">
             				// When the document is ready
 					
@@ -125,15 +146,14 @@
 				
 			    	</p>
 				
-    				<input id="input-23" name="input-23" type="file" multiple="false" class="file-loading" >
+    				<input id="input-23" name="input-23" type="file" multiple=true class="file-loading" value="<?php echo $img; ?>">
     				<script>
     					$(document).on('ready', function() {
         					$("#input-23").fileinput({
-            						showUpload: false,
-									minFileCount: 1,
+            						showUpload: true,
 	     						allowedFileExtensions: ["jpg", "gif", "png", "jpeg"],
                        					browseClass: "btn btn-info",
-        						browseLabel: "Inserir imagem",
+        						browseLabel: "Nova Imagem",
         						browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
             						layoutTemplates: {
                 						main1: "{preview}\n" +
@@ -147,12 +167,12 @@
                							 "</div>"
             						}
        						 });
-							 
     						});
     				</script>
 					<br>
+
       				<p class="login button"> 
-                                    <input type="submit" value="Adicionar" name="fsub" id="fsub" /> 
+                                    <input type="submit" value="Atualizar" name="fsub" id="fsub" Onclick="<?php $_SESSION['atualiza'] = 1; $_SESSION['idnum'] = $iden ?> /> 
 								</p>
 			</form>
 
@@ -171,4 +191,5 @@
     <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
+
 
