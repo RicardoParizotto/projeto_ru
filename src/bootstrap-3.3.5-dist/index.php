@@ -62,7 +62,7 @@
                 	if(!isset($_SESSION['user']))
 				echo "<li><a href=".'#myModal'." data-toggle=".'modal'." data-target=".'#myModal'.">Log in</a>";
 			else
-                		echo "<li><a href=".'#'.">Log out</a>";
+                		echo "<li><a href=".'logout.php'.">Log out</a>";
 				
 		?>
                 </li>
