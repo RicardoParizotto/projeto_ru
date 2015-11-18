@@ -62,7 +62,7 @@
                 	if(!isset($_SESSION['user']))
 				echo "<li><a href=".'#myModal'." data-toggle=".'modal'." data-target=".'#myModal'.">Log in</a>";
 			else
-                		echo "<li><a href=".'logout.php'.">Log out</a>";
+                		echo "<li><a href=".'sair.php'.">Log out</a>";
 				
 		?>
                 </li>
@@ -192,11 +192,6 @@
           ga('create', 'UA-40413119-1', 'bootply.com');
           ga('send', 'pageview');
         </script>
-
-        <div class="ad collapse in">
-          <button class="ad-btn-hide" data-toggle="collapse" data-target=".ad">&times;</button>
-          <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=bootplycom" id="_carbonads_js"></script>
-        </div>
         
     </body>
 </html>
