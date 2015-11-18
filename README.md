@@ -22,7 +22,10 @@ Implementação no projeto:
 	*Tela de apresentação dos cardápios;
 	*Avaliação dos cardápios;
 	*Formulários de inserção de cardápios;
-	*Inserção de registros(cardápios) no banco de dados; 
+	*Inserção de registros(cardápios) no banco de dados;
+	*Atualização de registros na base de dados;
+	*Remoção de dados do banco;
+	*Manutenção dos dados por um usuário autorizado (administrador);
 	*Funções de estatísticas;
 	
 Detalhes:
@@ -34,13 +37,18 @@ Detalhes:
 	O layout do sistema já está definido, foram utilizados alguns componentes que permitem buscar no banco de dados os cardápios, e apresentá-los
     no menu inicial, de forma que o usuário possa visualizar e avaliar os cardápios, assim como fazer comentários.
 
-	O formulário de inserção de um novo cardápio está implementado parcialmente, isto é, a inserção de dados no formulário é permitida, porém ainda
-	é validada via javascript; esta verificação ocorre apenas com o PHP ao enviar o cadastro para o servidor. Deste modo, se os registros forem válidos,
-	o mesmo é inserido no banco de dados. As imagens são armazenadas dentro da estrutura referenciada pelo banco de dados, ou seja, em uma pasta física 
-    no disco. Além deste controle, também será implementado a parte de atualização e exclusão de registros, deste modo, será possível gerenciar
-	um cardápio caso houverem erros de digitação, ou ainda se desejar removê-lo da base de dados.
+	O formulário de inserção de um novo cardápio está implementado, isto é, a inserção de dados no formulário é permitida, a validação ocorre com
+	mecanismos do HTML 5. A validação da imagem é feita via Jquery; esta verificação ocorre também com o PHP ao enviar o cadastro para o servidor. Deste modo, 
+	se os registros forem válidos, os mesmos são inseridos no banco de dados. As imagens são armazenadas dentro da estrutura referenciada pelo banco de dados, ou seja, 
+	em uma pasta física no disco. Além deste controle, também está implementado a parte de atualização de registros, deste modo, será possível gerenciar
+	um cardápio caso houverem erros de digitação. Ao atulizar um registro, os seus atributos são obrigatórios (não nulos); contudo não é necessário 
+	inserir uma nova imagem, se assim desejar. Esta função não está totalmente funcional, pois depende de algumas partes do sistema que ainda não estão
+	finalizadas. A remoção de registros também dependem destas partes não implementadas.
 
-	O sistema irá dispor de funcionalidades referentes a estatísticas dos cardápios, ou seja, a aceitação e a rejeição baseada na avaliação dos usuários.
+	O sistema irá dispor de funcionalidades referentes a estatísticas dos cardápios, ou seja, a aceitação e a rejeição baseada na avaliação dos usuários. esta
+	função está parcialmente finalizada, já é possível obter gráficos baseados em notas positivas e negativas de cada "prato" inserido na base de dados.
+
+	Alguns módulos como inclusão de avaliação de cardápios não estão totalmente finalizadas.
 	
 	Inicialmente o sistema iria permitir ao usuário fazer um cadastro, mas foi decidido que esta parte não fará mais parte do projeto.
 	
