@@ -1,4 +1,10 @@
 <?php
+  session_start();
+ // echo $_SESSION['user'];exit();
+  if(!isset($_SESSION['user']) OR !isset($_SESSION['pass'])){
+		//echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php \">";
+		header("Location: index.php");
+	}
   $timezone = "America/Sao_Paulo";
   date_default_timezone_set($timezone);
   $today = date("d-m-Y");
@@ -70,7 +76,7 @@
                 <li><a href="#" class="">Estatísticas</a>
 
                 </li>
-                <li><a href="#myModal" data-toggle="modal" data-target="#myModal">Sign out</a>
+                <li><a href="sair.php" >Sign out</a>
 
                 </li>
             </ul>
@@ -152,7 +158,7 @@
     				</script>
 					<br>
       				<p class="login button"> 
-                                    <input type="submit" value="Adicionar" name="fsub" id="fsub" /> 
+                                    <input type="submit" value="Adicionar" name="fsub" id="fsub" Onclick="<?php $_SESSION['atualiza'] = 0;?> /> 
 								</p>
 			</form>
 

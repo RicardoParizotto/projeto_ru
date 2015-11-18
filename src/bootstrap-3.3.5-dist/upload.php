@@ -1,7 +1,18 @@
+<?php 
+ session_start();
+if(!isset($_SESSION['user']) OR !isset($_SESSION['pass'])){
+		//echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php \">";
+		header("Location: index.php");
+   }
+
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/erros.css" rel="stylesheet" type="text/css" />
 <title>Upload</title>
 </head>
 
@@ -21,7 +32,7 @@
 
 		//$_UP['renomeia'] = false;
 
-		if(isset($_SESSION['atualiza']) && $_FILES['input-23']['error'] != 0){
+		if(isset($_SESSION['atualiza']) && $_FILES['input-23']['error'] != 0 && $_SESSION['atualiza'] == 1){
 
 			$card = $_POST['inputCard'];
 			$desc = $_POST['inputDescr'];
@@ -48,15 +59,18 @@
 			
 			        $result = mysql_query($query);
 				if(!$result){ //se tiver problemas, retorna falso
+					echo '<div class="error">Cardápio não foi atualizado.</div>';
+					echo "<meta http-equiv=\"refresh\" content=\"3; url=index.php \">";
 					die ("Acesso à base de dados falhou: ".mysql_error());
 				}
+				echo '<div class="success">Cardápio atualizado com sucesso.</div>';
+				echo "<meta http-equiv=\"refresh\" content=\"3; url=index.php \">";
 				
-				echo "Arquivo atualizado com sucesso.";
 				//echo "<img src=\"" . $destino . "\" />"
 		}
 
 
-		else if(isset($_SESSION['atualiza']) && $_FILES['input-23']['error'] == 0){
+		else if(isset($_SESSION['atualiza']) && $_FILES['input-23']['error'] == 0 && $_SESSION['atualiza'] == 1){
 
 				$card = $_POST['inputCard'];
 				$desc = $_POST['inputDescr'];
@@ -106,10 +120,13 @@
 					$query = "update Cardapio set Descricao='".$desc."',Nome='".$card."', img_url='".$destino."' where _id = '".$_SESSION['idnum']."'";}
 				$result = mysql_query($query);
 				if(!$result){ //se tiver problemas, retorna falso
-					die ("Acesso à base de dados falhou: ".mysql_error());
+					echo '<div class="error">Cardápio não foi atualizado.</div>';
+				echo "<meta http-equiv=\"refresh\" content=\"3; url=index.php \">";
+					die ("Acesso à base de dados falhou (atualizacao): ".mysql_error());
 				}
+				echo '<div class="success">Cardápio atualizado com sucesso.</div>';
+				echo "<meta http-equiv=\"refresh\" content=\"3; url=index.php \">";
 				
-				echo "Arquivo atualizado com sucesso..";
 				//echo "<img src=\"" . $destino . "\" />"
 
 				}
@@ -126,13 +143,21 @@
 	
 			if ($_FILES['input-23']['error'] != 0) {
 				die("Não foi possível fazer o upload, erro:<br />" . $_UP['erros'][$_FILES['input-23']['error']]);
-				exit; // Para a execução do script
+				echo '<div class="error">Cardápio não foi atualizado.</div>';
+				echo "<meta http-equiv=\"refresh\" content=\"3; url=update_cardam.php \">";
+				 // Para a execução do script
 			}
 			else if($_UP['tamanho'] < $_FILES['input-23']['size']){
-				echo "arquivo muito grande";exit;
+				echo "arquivo muito grande";
+				echo '<div class="error">Cardápio não foi atualizado.</div>';
+				echo "<meta http-equiv=\"refresh\" content=\"3; url=update_cardam.php \">";
+				
 			}
 			else if(!isset($_POST['inputCard']) || !isset($_POST['inputDescr']) || !isset($_POST['inputData']))
-			{				echo "Faltam informações";exit;}
+			{				echo "Faltam informações";
+					echo '<div class="error">Cardápio não foi atualizado.</div>';
+				echo "<meta http-equiv=\"refresh\" content=\"3; url=update_cardam.php \">";
+						}
    
 			else{
 			$nome = $_FILES['input-23']['name'];
@@ -158,14 +183,17 @@
 				$data = $_POST['inputData'];
 				
 				$data = date('Y/m/d', strtotime($data));
-				echo $data;
+				//echo $data;
 				$query = "insert into Cardapio (_id,Descricao,Data,Nome,img_url) values  (NULL, '".$desc."', '".$data."', '".$card."', '".$destino."')";
 				$result = mysql_query($query);
 				if(!$result){ //se tiver problemas, retorna falso
-					die ("Acesso à base de dados falhou: ".mysql_error());
+					echo '<div class="error">Cardápio não foi atualizado.</div>';
+				echo "<meta http-equiv=\"refresh\" content=\"3; url=index.php \">";
+					die ("Acesso à base de dados falhou (novo): ".mysql_error());
 				}
-				
-				echo "Arquivo salvo com sucesso.";
+				echo '<div class="success">Cardápio salvo com sucesso.</div>';
+				echo "<meta http-equiv=\"refresh\" content=\"3; url=index.php \">";
+				//echo "Arquivo salvo com sucesso.";
 				//echo "<img src=\"" . $destino . "\" />";
 			}
 		}
