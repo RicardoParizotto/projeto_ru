@@ -70,10 +70,10 @@
         </div>
         <div class="collapse navbar-collapse" style="">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" class="" style="">Explore</a>
+                <li class="active"><a href="index.php" class="" style="">Explore</a>
                 
                 </li>
-                <li><a href="#" class="">Estatísticas</a>
+                <li><a href="statistics.php" class="">Estatísticas</a>
 
                 </li>
                 <li><a href="sair.php" >Sign out</a>

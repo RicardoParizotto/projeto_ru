@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['user']) OR !isset($_SESSION['pass'])){
+		//echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php \">";
+		header("Location: index.php");
+ }
 require_once 'Menu.php';
 
     $menu = new Menu();
@@ -57,13 +63,9 @@ require_once 'Menu.php';
         </div>
         <div class="collapse navbar-collapse" style="">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" class="" style="">Explore</a>
+                <li class="active"><a href="index.php" class="" style="">Explore</a>
 
-                </li>
-                <li><a href="#" class="">Estatísticas</a>
-
-                </li>
-                <li><a href="#myModal" data-toggle="modal" data-target="#myModal">Sign in</a>
+                <li><a href="sair.php">Sign out</a>
 
                 </li>
             </ul>
@@ -85,10 +87,10 @@ require_once 'Menu.php';
 
         <!--/template-->
 
-        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script type="application/javascript" src="/js/jquery.canvasjs.min.js"></script>
+        <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="application/javascript" src="js/jquery.canvasjs.min.js"></script>
 
-        <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 
         <script>
@@ -103,7 +105,7 @@ require_once 'Menu.php';
             $(function () {
                     var chart = new CanvasJS.Chart("chartContainer", {
                         title:{
-                            text: "Avaliaçoes Pratos RU"
+                            text: "Avaliações Pratos RU"
                         },
                         animationEnabled: true,
                         axisX :{
@@ -117,13 +119,13 @@ require_once 'Menu.php';
                             {
                                 type: "bar",
                                 showInLegend: true,
-                                legendText: "Avaliaçoes Positivas",
+                                legendText: "Avaliações Positivas",
                                 dataPoints: <?php echo $positiveJson; ?>
                             },
                             {
                                 type: "bar",
                                 showInLegend: true,
-                                legendText: "Avaliaçoes Negativas",
+                                legendText: "Avaliações Negativas",
                                 dataPoints: <?php echo $negativeJson; ?>
                             }
 
