@@ -35,24 +35,6 @@
         
     <body>
 
-		<script>
-				function like(){
-					var xmlhttp = new XMLHttpRequest();
-
-					xmlhttp.open("GET","vote.php?id=2&order=like",true);	
-
-					xmlhttp.onreadstatechange = function() {
-   				       		if (xmlhttp.readyState < 4)                         // while waiting response from server
-        						document.getElementById('ok').innerHTML = "Loading...";
-    						else if (xmlhttp.readyState === 4) {                // 4 = Response from server has been completely loaded.
-       						        if (xmlhttp.status == 200 && xmlhttp.status < 300)  // http status between 200 to 299 are all successful
-            							document.getElementById('ok').innerHTML = xhr.responseText;
-    							}
-						}
- 
-					xmlhttp.send();
-				}
-		</script>
 
         
         <!--template-->
@@ -70,11 +52,19 @@
                 <li class="active"><a href="#" class="" style="">Explore</a>
                 
                 </li>
-                <li><a href="#" class="">Estatísticas</a>
+		<?php
+			if(isset($_SESSION['user']))
+                		echo "<li><a href=".'new_cardam.php'.">Gerenciar</a>";
+		?>
 
                 </li>
-                <li><a href="#myModal" data-toggle="modal" data-target="#myModal">LOG IN</a>
-
+		<?php
+                	if(!isset($_SESSION['user']))
+				echo "<li><a href=".'#myModal'." data-toggle=".'modal'." data-target=".'#myModal'.">Log in</a>";
+			else
+                		echo "<li><a href=".'#'.">Log out</a>";
+				
+		?>
                 </li>
             </ul>
         </div>
