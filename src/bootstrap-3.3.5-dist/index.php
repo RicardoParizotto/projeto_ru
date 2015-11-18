@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	//echo $_SESSION['user'];
 	require 'function.php';
 ?>
 
@@ -71,7 +73,7 @@
                 <li><a href="#" class="">Estatísticas</a>
 
                 </li>
-                <li><a href="#myModal" data-toggle="modal" data-target="#myModal">Sign in</a>
+                <li><a href="#myModal" data-toggle="modal" data-target="#myModal">LOG IN</a>
 
                 </li>
             </ul>

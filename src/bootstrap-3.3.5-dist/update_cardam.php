@@ -1,6 +1,10 @@
 <?php
 
   session_start();
+  if(!isset($_SESSION['user']) OR !isset($_SESSION['pass'])){
+		//echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php \">";
+		header("Location: index.php");
+   }
   include('connect.php');
   //$iden = $_SESSION['id'];
   $iden = 4;
