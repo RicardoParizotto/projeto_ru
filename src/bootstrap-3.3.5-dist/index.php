@@ -28,13 +28,28 @@
   
 		<link href="css/signin.css" rel="stylesheet">
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js" ></script>    
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
 
-
+			function cwRating(id,type,target){
+				$.ajax({
+					type:'POST',
+					url:'updateclick.php',
+					data:'id='+id+'&type='+type,
+					success:function(msg){
+						if(msg == 'err'){
+							alert('Some problem occured, please try again.');
+						}else{
+							$('#'+target).html(msg);
+						}
+					}
+			});
+		}
+		</script>
 
     </head>
         
     <body>
-
 
         
         <!--template-->
@@ -94,13 +109,13 @@
 						<h2>'.$row['Nome'].'</h2>
 						<p>'.$row['Descricao'].'';  		
 			    	}	
-	
+				
 		  	?>
 		  
                     <hr>
-			<button type="button" onclick="like()" class="btn btn-primary btn-lg">Gostei</button>	<span id="ok"></span>
+			<button type="button" onclick="cwRating(<?php echo $_GET['id']; ?>,1,'ok')" class="btn btn-primary btn-lg">Gostei</button>	<span id="ok"></span>
 
-                   	<button class="btn btn-primary btn-lg " id=dislike value="dislike">Não gostei</button>
+                   	<button class="btn btn-primary btn-lg " id="dislike" value="dislike" onclick="cwRating(<?php echo $_GET['id']; ?>,0,'dislike')">Não gostei</button>
 		          
 	            <hr>
                    

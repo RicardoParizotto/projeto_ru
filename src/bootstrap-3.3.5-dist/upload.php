@@ -18,7 +18,7 @@ if(!isset($_SESSION['user']) OR !isset($_SESSION['pass'])){
 
 <body>
 <?php
-	session_start();	
+	//session_start();	
 	require ('connect.php');
 	if(isset($_POST['fsub'])){
 		// Pasta onde o arquivo vai ser salvo
@@ -104,7 +104,7 @@ if(!isset($_SESSION['user']) OR !isset($_SESSION['pass'])){
 						$data = $_POST['inputData'];
 				
 						$data = date('Y/m/d', strtotime($data));
-						$query = "update Cardapio set Descricao='".$desc."',Data='".$data."',Nome='".$card."' img_url='".$destino."' where _id = '".$_SESSION['idnum']."'";
+						$query = "update Cardapio set Descricao='".$desc."',Data='".$data."',Nome='".$card."', img_url='".$destino."' where _id = '".$_SESSION['idnum']."'";
 					}
 					else
 						$query = "update Cardapio set Descricao='".$desc."',Nome='".$card."', img_url='".$destino."' where _id = '".$_SESSION['idnum']."'";
@@ -121,7 +121,7 @@ if(!isset($_SESSION['user']) OR !isset($_SESSION['pass'])){
 				$result = mysql_query($query);
 				if(!$result){ //se tiver problemas, retorna falso
 					echo '<div class="error">Cardápio não foi atualizado.</div>';
-				echo "<meta http-equiv=\"refresh\" content=\"3; url=index.php \">";
+				    echo "<meta http-equiv=\"refresh\" content=\"3; url=index.php \">";
 					die ("Acesso à base de dados falhou (atualizacao): ".mysql_error());
 				}
 				echo '<div class="success">Cardápio atualizado com sucesso.</div>';
